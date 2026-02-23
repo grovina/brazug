@@ -1,4 +1,3 @@
-encrypt.py
-*.css
-data.js
-charts.js
+public/
+.mypy_cache/
+__pycache__/
