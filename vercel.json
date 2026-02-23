@@ -1,4 +1,4 @@
 {
-  "buildCommand": "pip install cryptography && python encrypt.py",
+  "buildCommand": "uv pip install --system cryptography && python encrypt.py",
   "outputDirectory": "public"
 }
