@@ -218,10 +218,18 @@ document.getElementById("form").addEventListener("submit", async (e) => {{
 </body>
 </html>'''
 
-out = ROOT / "public" / "index.html"
-out.parent.mkdir(exist_ok=True)
-with open(out, "w") as f:
+import shutil
+
+out_dir = ROOT / "public"
+out_dir.mkdir(exist_ok=True)
+
+with open(out_dir / "index.html", "w") as f:
     f.write(wrapper)
 
-print(f"\\nWrapper written to {out} ({len(wrapper):,} chars)")
+for asset in SRC.iterdir():
+    if asset.suffix in ('.ico', '.png', '.svg', '.webmanifest'):
+        shutil.copy2(asset, out_dir / asset.name)
+        print(f"Copied {asset.name}")
+
+print(f"\\nWrapper written to {out_dir / 'index.html'} ({len(wrapper):,} chars)")
 print("Password:", PASSWORD)
